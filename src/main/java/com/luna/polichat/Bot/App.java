@@ -19,7 +19,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        JDABuilder jdaBuilder = JDABuilder.createDefault("NzUxMzcyNzMzNDA4ODcwNDIw.X1IIYw.rSwI4_btpqeNUBbDjGM0g_uCd7Y").setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS);
+        JDABuilder jdaBuilder = JDABuilder.createDefault("tM1ScUZpUkeDPXRHd8vVwuH4XD26h-Wf").setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS);
         JDA jda = null;
         try {
         	jda = jdaBuilder.build();
