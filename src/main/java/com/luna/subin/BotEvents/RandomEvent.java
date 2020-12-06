@@ -1,4 +1,4 @@
-package com.luna.polichat.BotEvents;
+package com.luna.subin.BotEvents;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -7,10 +7,23 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class RandomEvent extends ListenerAdapter {
+public class RandomEvent implements IEventHandler {
 	String[] messageSent;
 
-	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+	@Override
+	public String getCommands() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void handleEvent(GuildMessageReceivedEvent event) {
 		messageSent = event.getMessage().getContentRaw().split(" ");
 
 		if (!event.getMember().getUser().isBot()) {
@@ -34,5 +47,6 @@ public class RandomEvent extends ListenerAdapter {
 				event.getChannel().sendMessage(eb.build()).queue();
 			}
 		}
+		
 	}
 }

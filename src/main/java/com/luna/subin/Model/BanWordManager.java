@@ -1,4 +1,4 @@
-package com.luna.polichat.Model;
+package com.luna.subin.Model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,18 +1,31 @@
-package com.luna.polichat.BotEvents;
+package com.luna.subin.BotEvents;
 
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class MuteEvent extends ListenerAdapter {
+public class MuteEvent implements IEventHandler {
 	Role adminRole;
 	Member member;
 	String memberId;
 	String memberName;
 	String[] messageSent;
 
-	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+	@Override
+	public String getCommands() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void handleEvent(GuildMessageReceivedEvent event) {
 		messageSent = event.getMessage().getContentRaw().split(" ");
 
 		if (!event.getMember().getUser().isBot()) {

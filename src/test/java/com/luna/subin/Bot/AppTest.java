@@ -1,4 +1,4 @@
-package com.luna.polichat.Bot;
+package com.luna.subin.Bot;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

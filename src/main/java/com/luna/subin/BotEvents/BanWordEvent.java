@@ -1,21 +1,34 @@
-package com.luna.polichat.BotEvents;
+package com.luna.subin.BotEvents;
 
 import java.awt.Color;
 import java.util.Iterator;
 
-import com.luna.polichat.Model.BanWordManager;
+import com.luna.subin.Model.BanWordManager;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class BanWordEvent extends ListenerAdapter {
+public class BanWordEvent implements IEventHandler {
 
 	BanWordManager banWordManager;
 	String koreanFilter;
 	String filter;
 
-	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+	@Override
+	public String getCommands() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void handleEvent(GuildMessageReceivedEvent event) {
 		String[] messageSent = event.getMessage().getContentRaw().split(" ");
 		filter = event.getMessage().getContentRaw().replaceAll("[^\\uAC00-\\uD7A3xfea-zA-Z]", "");
 		koreanFilter = event.getMessage().getContentRaw().replaceAll("[^\uAC00-\uD7A3]", "");
@@ -80,6 +93,6 @@ public class BanWordEvent extends ListenerAdapter {
 				banWordManager.clearBanWords();
 				event.getChannel().sendMessage("Banned Words List Cleared.").queue();
 			}
-		}
+		}	
 	}
 }
