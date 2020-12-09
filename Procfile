@@ -1,1 +1,1 @@
-worker: java -cp target/classes Main
+worker: java -cp target/classes/:target/dependency/* com.luna.subin.Bot.Main
