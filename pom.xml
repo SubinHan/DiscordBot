@@ -91,6 +91,20 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<!--<classpathPrefix>lib/</classpathPrefix> -->
+								<mainClass>com.luna.subin.Bot.Main</mainClass>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-shade-plugin</artifactId>
 					<version>3.2.4</version>
 					<executions>
@@ -123,9 +137,6 @@
 							</goals>
 							<configuration>
 								<outputDirectory>target/dependency/</outputDirectory>
-								<overWriteReleases>false</overWriteReleases>
-								<overWriteSnapshots>false</overWriteSnapshots>
-								<overWriteIfNewer>true</overWriteIfNewer>
 							</configuration>
 						</execution>
 					</executions>
