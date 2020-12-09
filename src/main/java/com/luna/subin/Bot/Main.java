@@ -13,11 +13,11 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
  * Hello world!
  *
  */
-public class App 
+public class Main 
 {
     public static void main( String[] args )
     {
-        JDABuilder jdaBuilder = JDABuilder.createDefault(System.getenv("TOKEN")).setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS);
+        JDABuilder jdaBuilder = JDABuilder.createDefault("NzUxMzcyNzMzNDA4ODcwNDIw.X1IIYw.6FdzeSQk2rPgzRpGh5sh7ipzShA").setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS);
         JDA jda = null;
         try {
         	jda = jdaBuilder.build();

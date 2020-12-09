@@ -1,1 +1,1 @@
-Worker: java /src/main/java/com/luna/subin/Bot/App.java
+Worker: java /src/main/java/com/luna/subin/Bot/Main.java
