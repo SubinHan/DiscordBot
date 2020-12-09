@@ -46,6 +46,11 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.13.1</version>
 		</dependency>
+		<dependency>
+			<groupId>copy-dependencies</groupId>
+			<artifactId>copy-dependencies</artifactId>
+			<version>3.1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
