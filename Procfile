@@ -1,1 +1,1 @@
-worker: java -cp target/classes/com/luna/subin/bot/Main.class
+worker: java -cp target/classes Main
