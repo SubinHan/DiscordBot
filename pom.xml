@@ -98,6 +98,11 @@
 			<plugin>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>3.0.3</version>
+			</plugin>
 		</plugins>
 	</reporting>
 </project>
