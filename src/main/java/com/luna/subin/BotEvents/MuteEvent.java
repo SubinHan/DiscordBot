@@ -32,12 +32,15 @@ public class MuteEvent implements IEventHandler {
 		if (!event.getMember().getUser().isBot()) {
 
 			adminRole = event.getGuild().getRoleById("371604058185793538");
-			if (!event.getMessage().getMember().getRoles().contains(adminRole)) {
-				event.getChannel().sendMessage("Only administrators can use.").queue();
-				return;
-			}
+			
 
 			if (messageSent[0].equalsIgnoreCase(commands[0])) {
+				
+				if (!event.getMessage().getMember().getRoles().contains(adminRole)) {
+					event.getChannel().sendMessage("Only administrators can use.").queue();
+					return;
+				}
+				
 				memberId = messageSent[1].replace("<@!", "").replace(">", "");
 				Member member = event.getGuild().getMemberById(memberId);
 				if (member == null) {
