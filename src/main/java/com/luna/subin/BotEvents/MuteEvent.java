@@ -6,6 +6,8 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class MuteEvent implements IEventHandler {
+	private final String[] commands = {"-mute"};
+	
 	Role adminRole;
 	Member member;
 	String memberId;
@@ -13,13 +15,12 @@ public class MuteEvent implements IEventHandler {
 	String[] messageSent;
 
 	@Override
-	public String getCommands() {
-		// TODO Auto-generated method stub
-		return null;
+	public String[] getCommands() {
+		return commands;
 	}
 
 	@Override
-	public String getDescription() {
+	public String getDescription(String command) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -36,7 +37,7 @@ public class MuteEvent implements IEventHandler {
 				return;
 			}
 
-			if (messageSent[0].equalsIgnoreCase("-mute")) {
+			if (messageSent[0].equalsIgnoreCase(commands[0])) {
 				memberId = messageSent[1].replace("<@!", "").replace(">", "");
 				Member member = event.getGuild().getMemberById(memberId);
 				if (member == null) {
