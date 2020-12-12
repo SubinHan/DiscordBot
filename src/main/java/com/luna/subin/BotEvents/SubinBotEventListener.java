@@ -19,6 +19,7 @@ public class SubinBotEventListener extends ListenerAdapter implements IEventHand
 		eventHandlers.add(new RandomEvent());
 		eventHandlers.add(new MuteEvent());
 		eventHandlers.add(new SteamEvent());
+		eventHandlers.add(new TestEvent());
 	}
 	
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {

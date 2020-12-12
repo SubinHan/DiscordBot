@@ -1,8 +1,11 @@
 package com.luna.subin.Bot;
 
+import java.io.IOException;
+
 import javax.security.auth.login.LoginException;
 
 import com.luna.subin.BotEvents.SubinBotEventListener;
+import com.luna.subin.Firebase.Firebase;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -26,5 +29,11 @@ public class Main
         }
         
         jda.addEventListener(new SubinBotEventListener());
+        
+        try {
+			Firebase.initFirebase();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 }
