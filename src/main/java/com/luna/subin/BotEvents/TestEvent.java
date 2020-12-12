@@ -2,16 +2,15 @@ package com.luna.subin.BotEvents;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
+import com.google.firebase.database.DataSnapshot;
 import com.luna.subin.Firebase.Firebase;
 
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class TestEvent implements IEventHandler {
 	
-	private final String[] commands = {"-testpushdb"};
+	private final String[] commands = {"-testpushdb", "-testgetdb"};
 	String messageSent[];
 	
 
@@ -38,6 +37,20 @@ public class TestEvent implements IEventHandler {
 			Firebase.rootReference.child("test").setValueAsync(map);
 			
 			event.getChannel().sendMessage("DB Pushed!").queue();
+		}
+		
+		if (messageSent[0].equalsIgnoreCase(commands[1])) {
+			
+			DataSnapshot ds;
+			ds = Firebase.dataSnapshot.child("test");
+			if(messageSent.length >= 2 ) {
+				for(int i = 1; i < messageSent.length; i++) {
+					ds.child(messageSent[i]);
+				}
+				event.getChannel().sendMessage("Value: " + ds.getValue()).queue();
+			}
+			
+			event.getChannel().sendMessage("Key 값을 입력해주세요!").queue();
 		}
 
 	}
