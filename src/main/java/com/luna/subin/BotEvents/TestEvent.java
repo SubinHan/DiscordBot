@@ -49,8 +49,8 @@ public class TestEvent implements IEventHandler {
 				}
 				event.getChannel().sendMessage("Value: " + ds.getValue()).queue();
 			}
-			
-			event.getChannel().sendMessage("Key 값을 입력해주세요!").queue();
+			else
+				event.getChannel().sendMessage("Key 값을 입력해주세요!").queue();
 		}
 
 	}
