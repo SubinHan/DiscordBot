@@ -1,14 +1,11 @@
 package com.luna.subin.Bot;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.jupiter.api.Test;
-
 import com.luna.subin.Model.ApexPlayerData;
 
-public class ApexPlayerDataTest {
+import junit.framework.TestCase;
+
+public class ApexPlayerDataTest extends TestCase {
 	
-	@Test
 	public void test() {
 		ApexPlayerData subin = new ApexPlayerData("수빈", 1000, 5);
 		ApexPlayerData yeong = new ApexPlayerData("영욱", 750, 3);

@@ -1,14 +1,12 @@
 package com.luna.subin.Bot;
 
-import java.util.Map;
-
-import org.junit.Test;
-
 import com.luna.subin.Model.ApexMatchData;
 import com.luna.subin.Model.ApexPlayerData;
 
-public class ApexMatchDataTest {
-	@Test
+import junit.framework.TestCase;
+
+public class ApexMatchDataTest extends TestCase{
+
 	public void test() {
 		ApexPlayerData subin = new ApexPlayerData("수빈", 1000, 5);
 		ApexPlayerData yeong = new ApexPlayerData("영욱", 750, 3);

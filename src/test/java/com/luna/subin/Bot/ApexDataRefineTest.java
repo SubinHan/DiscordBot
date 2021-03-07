@@ -1,14 +1,13 @@
 package com.luna.subin.Bot;
 
-import org.junit.Test;
-
 import com.luna.subin.Model.ApexDataCollector;
 import com.luna.subin.Model.ApexMatchData;
 import com.luna.subin.Model.ApexPlayerData;
 
-public class ApexDataRefineTest {
+import junit.framework.TestCase;
 
-	@Test
+public class ApexDataRefineTest extends TestCase {
+
 	public void test() {
 		
 		ApexDataCollector collector = new ApexDataCollector();
