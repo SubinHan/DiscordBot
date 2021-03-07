@@ -62,14 +62,13 @@ public class ApexDataCollector {
 	}
 
 	private void collectKillsRatio() {
-		int numUnvalid = 0;
+		int numValid = 0;
 		
 		Iterator it = matches.iterator();
 		while (it.hasNext()) {
 			ApexMatchData matchData = (ApexMatchData) it.next();
 			Map<String, Double> killsRatioMap = matchData.getKillsRatio();
 			if(killsRatioMap == null) {
-				numUnvalid++;
 				continue;
 			}
 				
@@ -81,13 +80,13 @@ public class ApexDataCollector {
 				else {
 					killsRatio.put(name, killsRatio.get(name) + killsRatioMap.get(name));
 				}
+				numValid++;
 			}
 		}
 //		System.out.println(killsRatio);
 
 		for (String name : killsRatio.keySet()) {
-			System.out.println(numUnvalid);
-			killsRatio.put(name, killsRatio.get(name) / (matches.size() - numUnvalid));
+			killsRatio.put(name, killsRatio.get(name) / (numValid));
 		}
 	}
 
