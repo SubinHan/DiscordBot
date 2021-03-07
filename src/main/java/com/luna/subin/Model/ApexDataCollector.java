@@ -86,6 +86,7 @@ public class ApexDataCollector {
 //		System.out.println(killsRatio);
 
 		for (String name : killsRatio.keySet()) {
+			System.out.println(numUnvalid);
 			killsRatio.put(name, killsRatio.get(name) / (matches.size() - numUnvalid));
 		}
 	}
