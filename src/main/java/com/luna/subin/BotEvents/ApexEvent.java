@@ -89,7 +89,7 @@ public class ApexEvent implements IEventHandler {
 				embedMessage = "";
 				stats = collector.getAverageKills();
 				for (String name : stats.keySet()) {
-					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f", stats.get(name)) + "\n");
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.2f", stats.get(name)) + "\n");
 				}
 				eb.addField("평균 처치", embedMessage, false);
 				
@@ -102,6 +102,7 @@ public class ApexEvent implements IEventHandler {
 				
 				embedMessage = "";
 				stats = collector.getKillsRatio();
+				System.out.println(stats);
 				for (String name : stats.keySet()) {
 					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", stats.get(name) * 100) + "\n");
 				}
