@@ -33,7 +33,7 @@ public class ApexMatchData {
 			double damageRatio;
 			if(totalDamage == 0)
 				damageRatio = 0;
-			else{
+			else
 				damageRatio = (double) player.getDamageDealt() / totalDamage;
 			map.put(player.getName(), damageRatio);
 		}
