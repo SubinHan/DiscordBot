@@ -1,5 +1,7 @@
 package com.luna.subin.Bot;
 
+import java.util.Map;
+
 import com.luna.subin.Model.ApexDataCollector;
 import com.luna.subin.Model.ApexMatchData;
 import com.luna.subin.Model.ApexPlayerData;
@@ -49,5 +51,13 @@ public class ApexDataCollectorTest extends TestCase {
 		System.out.println(collector.getAverageDamage());
 		System.out.println(collector.getAverageKills());
 		
+		
+		String embedMessage = "";
+
+		Map<String, Double> averageDamageMap = collector.getAverageDamage();
+		for (String name : averageDamageMap.keySet()) {
+			embedMessage = embedMessage.concat(name + "은 평균 " + String.format("%.1f", averageDamageMap.get(name)) + "의 데미지를 넣었습니다!\n");
+		}
+		System.out.println(embedMessage);
 	}
 }

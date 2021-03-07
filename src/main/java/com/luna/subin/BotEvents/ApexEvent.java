@@ -80,7 +80,7 @@ public class ApexEvent implements IEventHandler {
 
 				Map<String, Double> averageDamageMap = collector.getAverageDamage();
 				for (String name : averageDamageMap.keySet()) {
-					embedMessage.concat(name + "은 평균 " + averageDamageMap.get(name) + "의 데미지를 넣었습니다!\n");
+					embedMessage = embedMessage.concat(name + "은 평균 " + String.format("%.1f", averageDamageMap.get(name)) + "의 데미지를 넣었습니다!\n");
 				}
 				
 				eb.addField("평균 데미지", embedMessage, false);
