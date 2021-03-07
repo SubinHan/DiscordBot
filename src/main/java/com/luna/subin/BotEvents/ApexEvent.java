@@ -77,13 +77,29 @@ public class ApexEvent implements IEventHandler {
 				eb.setTitle("Apex Legends 통계");
 				
 				String embedMessage = "";
-
-				Map<String, Double> averageDamageMap = collector.getAverageDamage();
-				for (String name : averageDamageMap.keySet()) {
-					embedMessage = embedMessage.concat(name + "은 평균 " + String.format("%.1f", averageDamageMap.get(name)) + "의 데미지를 넣었습니다!\n");
-				}
 				
+				Map<String, Double> stats;
+
+				stats = collector.getAverageDamage();
+				for (String name : stats.keySet()) {
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f", stats.get(name)) + "\n");
+				}
 				eb.addField("평균 데미지", embedMessage, false);
+				stats = collector.getAverageKills();
+				for (String name : stats.keySet()) {
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f", stats.get(name)) + "\n");
+				}
+				eb.addField("평균 처치", embedMessage, false);
+				stats = collector.getDamageRatio();
+				for (String name : stats.keySet()) {
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", stats.get(name)) + "\n");
+				}
+				eb.addField("팀 데미지 점유율", embedMessage, false);
+				stats = collector.getKillsRatio();
+				for (String name : stats.keySet()) {
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", stats.get(name)) + "\n");
+				}
+				eb.addField("팀 처치 점유율", embedMessage, false);
 			
 				event.getChannel().sendMessage(eb.build()).queue();
 			});
