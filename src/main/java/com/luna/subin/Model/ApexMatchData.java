@@ -30,7 +30,11 @@ public class ApexMatchData {
 		it = players.iterator();
 		while (it.hasNext()) {
 			ApexPlayerData player = (ApexPlayerData) it.next();
-			double damageRatio = (double)player.getDamageDealt() / totalDamage;
+			double damageRatio;
+			if(totalDamage == 0)
+				damageRatio = 0;
+			else{
+				damageRatio = (double) player.getDamageDealt() / totalDamage;
 			map.put(player.getName(), damageRatio);
 		}
 
@@ -45,7 +49,7 @@ public class ApexMatchData {
 		int totalKills = 0;
 		while (it.hasNext()) {
 			ApexPlayerData player = (ApexPlayerData) it.next();
-			if(player.getKills() < 0) {
+			if (player.getKills() < 0) {
 				return null;
 			}
 			totalKills += player.getKills();
@@ -54,7 +58,13 @@ public class ApexMatchData {
 		it = players.iterator();
 		while (it.hasNext()) {
 			ApexPlayerData player = (ApexPlayerData) it.next();
-			double killsRatio = (double)player.getKills() / totalKills;
+
+			double killsRatio;
+			if (totalKills == 0) {
+				killsRatio = 0;
+			} else {
+				killsRatio = (double) player.getKills() / totalKills;
+			}
 			map.put(player.getName(), killsRatio);
 		}
 
@@ -72,7 +82,7 @@ public class ApexMatchData {
 			totalDamage += player.getDamageDealt();
 		}
 
-		double averageDamage = (double)totalDamage / players.size();
+		double averageDamage = (double) totalDamage / players.size();
 
 		it = players.iterator();
 		while (it.hasNext()) {
@@ -83,7 +93,7 @@ public class ApexMatchData {
 
 		return map;
 	}
-	
+
 	public Map getKillsDeviation() {
 		Map map = new HashMap<String, Double>();
 
@@ -92,14 +102,14 @@ public class ApexMatchData {
 		int totalKills = 0;
 		while (it.hasNext()) {
 			ApexPlayerData player = (ApexPlayerData) it.next();
-			if(player.getKills() < 0) {
+			if (player.getKills() < 0) {
 				return null;
 			}
 			totalKills += player.getKills();
 		}
 
-		double averageKills = (double)totalKills / players.size();
-		
+		double averageKills = (double) totalKills / players.size();
+
 		it = players.iterator();
 		while (it.hasNext()) {
 			ApexPlayerData player = (ApexPlayerData) it.next();
@@ -109,7 +119,7 @@ public class ApexMatchData {
 
 		return map;
 	}
-	
+
 	public Map getDamage() {
 		Map map = new HashMap<String, Integer>();
 
@@ -122,7 +132,7 @@ public class ApexMatchData {
 
 		return map;
 	}
-	
+
 	public Map getKills() {
 		Map map = new HashMap<String, Integer>();
 
@@ -130,7 +140,7 @@ public class ApexMatchData {
 		it = players.iterator();
 		while (it.hasNext()) {
 			ApexPlayerData player = (ApexPlayerData) it.next();
-			if(player.getKills() < 0) {
+			if (player.getKills() < 0) {
 				return null;
 			}
 			map.put(player.getName(), player.getKills());
@@ -138,6 +148,5 @@ public class ApexMatchData {
 
 		return map;
 	}
-	
 
 }
