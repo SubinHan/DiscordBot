@@ -85,19 +85,25 @@ public class ApexEvent implements IEventHandler {
 					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f", stats.get(name)) + "\n");
 				}
 				eb.addField("평균 데미지", embedMessage, false);
+				
+				embedMessage = "";
 				stats = collector.getAverageKills();
 				for (String name : stats.keySet()) {
 					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f", stats.get(name)) + "\n");
 				}
 				eb.addField("평균 처치", embedMessage, false);
+				
+				embedMessage = "";
 				stats = collector.getDamageRatio();
 				for (String name : stats.keySet()) {
-					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", stats.get(name)) + "\n");
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", stats.get(name) * 100) + "\n");
 				}
 				eb.addField("팀 데미지 점유율", embedMessage, false);
+				
+				embedMessage = "";
 				stats = collector.getKillsRatio();
 				for (String name : stats.keySet()) {
-					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", stats.get(name)) + "\n");
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", stats.get(name) * 100) + "\n");
 				}
 				eb.addField("팀 처치 점유율", embedMessage, false);
 			
