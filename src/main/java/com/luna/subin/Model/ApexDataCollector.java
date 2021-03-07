@@ -80,8 +80,9 @@ public class ApexDataCollector {
 				else {
 					killsRatio.put(name, killsRatio.get(name) + killsRatioMap.get(name));
 				}
-				numValid++;
+				
 			}
+			numValid++;
 		}
 //		System.out.println(killsRatio);
 
