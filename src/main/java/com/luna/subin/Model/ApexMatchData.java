@@ -61,7 +61,7 @@ public class ApexMatchData {
 
 			double killsRatio;
 			if (totalKills == 0) {
-				killsRatio = 0;
+				return null;
 			} else {
 				killsRatio = (double) player.getKills() / totalKills;
 			}
