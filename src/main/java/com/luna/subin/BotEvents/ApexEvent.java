@@ -112,7 +112,7 @@ public class ApexEvent implements IEventHandler {
 				stats = collector.getDamageVariation();
 				System.out.println(stats);
 				for (String name : stats.keySet()) {
-					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", Math.sqrt(stats.get(name))) + "\n");
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f", Math.sqrt(stats.get(name))) + "\n");
 				}
 				eb.addField("데미지 기복 (높을수록 기복이 심함)", embedMessage, false);
 			
