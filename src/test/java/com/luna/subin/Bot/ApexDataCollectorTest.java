@@ -50,6 +50,7 @@ public class ApexDataCollectorTest extends TestCase {
 		System.out.println(collector.getKillsDeviation());
 		System.out.println(collector.getAverageDamage());
 		System.out.println(collector.getAverageKills());
+		System.out.println(collector.getDamageVariation());
 		
 		
 		String embedMessage = "";

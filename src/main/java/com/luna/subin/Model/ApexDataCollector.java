@@ -15,6 +15,7 @@ public class ApexDataCollector {
 	Map<String, Double> killsDeviation;
 	Map<String, Double> averageDamage;
 	Map<String, Double> averageKills;
+	Map<String, Double> damageVariation;
 
 	public ApexDataCollector() {
 		matches = new ArrayList<ApexMatchData>();
@@ -24,6 +25,7 @@ public class ApexDataCollector {
 		killsDeviation = new HashMap<String, Double>();
 		averageDamage = new HashMap<String, Double>();
 		averageKills = new HashMap<String, Double>();
+		damageVariation = new HashMap<String, Double>();
 	}
 
 	public void add(ApexMatchData match) {
@@ -37,6 +39,7 @@ public class ApexDataCollector {
 		collectKillsDeviation();
 		collectAverageDamage();
 		collectAverageKills();
+		collectDamageVariation();
 	}
 
 	private void collectDamageRatio() {
@@ -63,15 +66,15 @@ public class ApexDataCollector {
 
 	private void collectKillsRatio() {
 		int numValid = 0;
-		
+
 		Iterator it = matches.iterator();
 		while (it.hasNext()) {
 			ApexMatchData matchData = (ApexMatchData) it.next();
 			Map<String, Double> killsRatioMap = matchData.getKillsRatio();
-			if(killsRatioMap == null) {
+			if (killsRatioMap == null) {
 				continue;
 			}
-				
+
 //			System.out.println(killsRatioMap);
 
 			for (String name : killsRatioMap.keySet()) {
@@ -80,7 +83,7 @@ public class ApexDataCollector {
 				else {
 					killsRatio.put(name, killsRatio.get(name) + killsRatioMap.get(name));
 				}
-				
+
 			}
 			numValid++;
 		}
@@ -92,8 +95,7 @@ public class ApexDataCollector {
 	}
 
 	private void collectDamageDeviation() {
-		
-		
+
 		Iterator it = matches.iterator();
 		while (it.hasNext()) {
 			ApexMatchData matchData = (ApexMatchData) it.next();
@@ -117,13 +119,13 @@ public class ApexDataCollector {
 
 	private void collectKillsDeviation() {
 		int numUnvalid = 0;
-		
+
 		Iterator it = matches.iterator();
 		while (it.hasNext()) {
 			ApexMatchData matchData = (ApexMatchData) it.next();
 			Map<String, Double> killsDeviationMap = matchData.getKillsDeviation();
 //			System.out.println(killsDeviation);
-			if(killsDeviationMap == null) {
+			if (killsDeviationMap == null) {
 				numUnvalid++;
 				continue;
 			}
@@ -167,13 +169,13 @@ public class ApexDataCollector {
 
 	private void collectAverageKills() {
 		int numUnvalid = 0;
-		
+
 		Iterator it = matches.iterator();
 		while (it.hasNext()) {
 			ApexMatchData matchData = (ApexMatchData) it.next();
 			Map<String, Integer> averageKillsMap = matchData.getKills();
 //			System.out.println(averageDamage);
-			if(averageKillsMap == null) {
+			if (averageKillsMap == null) {
 				numUnvalid++;
 				continue;
 			}
@@ -190,6 +192,29 @@ public class ApexDataCollector {
 
 		for (String name : averageKills.keySet()) {
 			averageKills.put(name, averageKills.get(name) / (matches.size() - numUnvalid));
+		}
+	}
+
+	private void collectDamageVariation() {
+
+		Iterator it = matches.iterator();
+		while (it.hasNext()) {
+			ApexMatchData matchData = (ApexMatchData) it.next();
+			Map<String, Double> damageVariationMap = matchData.getDamageVariation();
+//			System.out.println(damageDeviation);
+
+			for (String name : damageVariationMap.keySet()) {
+				if (!damageVariation.containsKey(name))
+					damageVariation.put(name, damageVariationMap.get(name));
+				else {
+					damageVariation.put(name, damageVariation.get(name) + damageVariationMap.get(name));
+				}
+			}
+		}
+//		System.out.println(killsRatio);
+
+		for (String name : damageVariation.keySet()) {
+			damageVariation.put(name, damageVariation.get(name) / matches.size());
 		}
 	}
 
@@ -215,6 +240,10 @@ public class ApexDataCollector {
 
 	public Map<String, Double> getAverageKills() {
 		return averageKills;
+	}
+	
+	public Map<String, Double> getDamageVariation() {
+		return damageVariation;
 	}
 
 }

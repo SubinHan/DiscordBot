@@ -148,5 +148,28 @@ public class ApexMatchData {
 
 		return map;
 	}
+	
+	public Map getDamageVariation() {
+		Map map = new HashMap<String, Double>();
+
+		Iterator it;
+		it = players.iterator();
+		int totalDamage = 0;
+		while (it.hasNext()) {
+			ApexPlayerData player = (ApexPlayerData) it.next();
+			totalDamage += player.getDamageDealt();
+		}
+
+		double averageDamage = (double) totalDamage / players.size();
+
+		it = players.iterator();
+		while (it.hasNext()) {
+			ApexPlayerData player = (ApexPlayerData) it.next();
+			double damageVariation = Math.pow(player.getDamageDealt() - averageDamage, 2);
+			map.put(player.getName(), damageVariation);
+		}
+
+		return map;
+	}
 
 }

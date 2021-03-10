@@ -107,6 +107,14 @@ public class ApexEvent implements IEventHandler {
 					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", stats.get(name) * 100) + "\n");
 				}
 				eb.addField("팀 처치 점유율", embedMessage, false);
+				
+				embedMessage = "";
+				stats = collector.getDamageVariation();
+				System.out.println(stats);
+				for (String name : stats.keySet()) {
+					embedMessage = embedMessage.concat(name + ": " + String.format("%.1f %%", Math.sqrt(stats.get(name))) + "\n");
+				}
+				eb.addField("데미지 기복 (높을수록 기복이 심함)", embedMessage, false);
 			
 				event.getChannel().sendMessage(eb.build()).queue();
 			});
