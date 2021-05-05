@@ -47,12 +47,7 @@ public class SteamPriceCrawler {
 					if(originalPrice.length() == 0)
 						continue;
 					discountPercent = element.select(".discount_pct").text();
-//					if(discountPercent.length() == 0)
-//						discountPercent = element.select(".bundle_base_discount").text();
 					discountPrice = element.select(".discount_final_price").text();
-//					if(discountPrice.length() == 0)
-//						discountPrice = element.select(".")
-//					System.out.println(discountPercent.length());
 					HashMap gameInfos = new HashMap<>();
 					gameInfos.put(TITLE, gameTitle);
 					gameInfos.put(ORIGINAL_PRICE, originalPrice);
@@ -65,22 +60,7 @@ public class SteamPriceCrawler {
 					System.out.println(originalPrice);
 					System.out.println(discountPercent);
 					System.out.println(discountPrice);
-//					System.out.println();
-//					System.out.println();
-//					System.out.println();
 				}
-//				final Elements discountPctOnPage = document.select(".game_area_purchase_game_wrapper .discount_pct");
-//				for(final Element element : discountPctOnPage) {
-//					System.out.println(element.toString());
-//				}
-//				final Elements discountOriginalPriceOnPage = document.select(".discount_original_price");
-//				for(final Element element : discountOriginalPriceOnPage) {
-//					System.out.println(element.toString());
-//				}
-//				final Elements discountFinalPriceOnPage = document.select(".discount_final_price");
-//				for(final Element element : discountFinalPriceOnPage) {
-//					System.out.println(element.toString());
-//				}
 			}
 		} catch(Exception e) {
 			;

@@ -16,11 +16,12 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
  * Hello world!
  *
  */
-public class Main 
+public class SubinBot 
 {
     public static void main( String[] args )
     {
-        JDABuilder jdaBuilder = JDABuilder.createDefault("NzUxMzcyNzMzNDA4ODcwNDIw.X1IIYw.6FdzeSQk2rPgzRpGh5sh7ipzShA").setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS);
+    	String jdaToken = System.getenv("TOKEN");
+        JDABuilder jdaBuilder = JDABuilder.createDefault(jdaToken).setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS);
         JDA jda = null;
         try {
         	jda = jdaBuilder.build();

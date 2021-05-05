@@ -41,23 +41,17 @@ public class SteamEvent implements IEventHandler {
 		messageSent = event.getMessage().getContentRaw().split(" ");
 
 		if (messageSent[0].equalsIgnoreCase(commands[0])) {
+			long channelId = Long.parseLong(System.getenv("GAMELIST_CHANNEL_ID"));
 			EmbedBuilder eb = new EmbedBuilder();
 			eb.setTitle("등록된 게임 목록");
-			TextChannel textChannel = event.getJDA().getTextChannelById(733678943286198383L);
+			TextChannel textChannel = event.getJDA().getTextChannelById(channelId);
 			MessageHistory messageHistory = textChannel.getHistory();
 			messageHistory.getHistoryFromBeginning(textChannel).queue(message -> {
-				Iterator iter = message.getRetrievedHistory().iterator();
-				Set<URL> urls = new HashSet<URL>();
-				while (iter.hasNext()) {
-					try {
-						urls.add(new URL(((Message) iter.next()).getContentDisplay()));
-					} catch (MalformedURLException e) {
-						e.printStackTrace();
-					}
-				}
+				Set<URL> urls = collectSteamUrls(message);
 				SteamPriceCrawler steamCrawler = new SteamPriceCrawler(urls);
+				
 				ArrayList gameList = steamCrawler.getGameList();
-				iter = gameList.iterator();
+				Iterator iter = gameList.iterator();
 
 				while (iter.hasNext()) {
 					HashMap gameInfo = (HashMap) iter.next();
@@ -77,18 +71,11 @@ public class SteamEvent implements IEventHandler {
 			TextChannel textChannel = event.getJDA().getTextChannelById(733678943286198383L);
 			MessageHistory messageHistory = textChannel.getHistory();
 			messageHistory.getHistoryFromBeginning(textChannel).queue(message -> {
-				Iterator iter = message.getRetrievedHistory().iterator();
-				Set<URL> urls = new HashSet<URL>();
-				while (iter.hasNext()) {
-					try {
-						urls.add(new URL(((Message) iter.next()).getContentDisplay()));
-					} catch (MalformedURLException e) {
-						e.printStackTrace();
-					}
-				}
+				Set<URL> urls = collectSteamUrls(message);
 				SteamPriceCrawler steamCrawler = new SteamPriceCrawler(urls);
+				
 				ArrayList gameList = steamCrawler.getGameList();
-				iter = gameList.iterator();
+				Iterator iter = gameList.iterator();
 				boolean isDiscounted = false;
 
 				while (iter.hasNext()) {
@@ -112,5 +99,18 @@ public class SteamEvent implements IEventHandler {
 
 		}
 
+	}
+
+	private Set<URL> collectSteamUrls(MessageHistory message) {
+		Set<URL> urls = new HashSet<URL>();
+		Iterator iter = message.getRetrievedHistory().iterator();
+		while (iter.hasNext()) {
+			try {
+				urls.add(new URL(((Message) iter.next()).getContentDisplay()));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+		return urls;
 	}
 }
