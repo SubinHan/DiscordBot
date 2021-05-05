@@ -23,8 +23,8 @@ public class SubinBotEventListener extends ListenerAdapter implements IEventHand
 	}
 	
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-//		System.out.println("event Handled");
 		String[] messageSent = event.getMessage().getContentRaw().split(" ");
+		System.out.println(messageSent[0].toString());
 
 		if (!event.getMember().getUser().isBot()) {
 			Iterator<IEventHandler> iter = eventHandlers.iterator();
@@ -72,6 +72,7 @@ public class SubinBotEventListener extends ListenerAdapter implements IEventHand
 			eb.addField("Channel ID(long)", String.valueOf(event.getChannel().getIdLong()), false);
 			eb.addField("Messenger", event.getMessage().getMember().getNickname(), false);
 			eb.addField("Message",  event.getMessage().getContentRaw(), false);
+			event.getChannel().sendMessage(eb.build()).queue();
 		}
 		
 	}
