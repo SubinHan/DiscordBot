@@ -20,7 +20,7 @@ public class SubinBot
     public static void main( String[] args )
     {
     	String jdaToken = System.getenv("TOKEN");
-        JDABuilder jdaBuilder = JDABuilder.createDefault("NzUxMzcyNzMzNDA4ODcwNDIw.X1IIYw.aAPk9VvBsp3qN87DwyRrtypglqI").setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS);
+        JDABuilder jdaBuilder = JDABuilder.createDefault(jdaToken).setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS);
         JDA jda = null;
         try {
         	jda = jdaBuilder.build();
